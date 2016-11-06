@@ -1,3 +1,4 @@
 .idea/
 pypublish.iml
 PyUpload.egg-info/
+*.pyc

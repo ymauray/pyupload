@@ -16,7 +16,7 @@ def checkfile(p_file):
 
 def main():
     """Entry point for PyUpload"""
-    print "PyPublish v0.1-alpha, by Yannick Mauray a.k.a. the french guy from Switzerland"
+    print "PyPublish v0.1.0, by Yannick Mauray a.k.a. the french guy from Switzerland"
     print "Published under the GNU General Public License v3"
     print "See https://www.gnu.org/licenses/gpl.txt"
     print ""
@@ -26,8 +26,6 @@ def main():
 
     checkfile(config.get('episode', 'file'))
     checkfile(config.get('episode', 'cover_art'))
-
-    print 'Retrieving Auphonic\'s preset details'
 
     proc = subprocess.Popen(
         ['curl', '-s', '-X', 'GET', 'https://auphonic.com/api/preset/%s.json' % config.get('auphonic', 'preset'), '-u',

@@ -67,22 +67,50 @@ $ virtualenv pyupload
 $ cd pyupload
 $ source bin/activate
 ```
-Install PyUpload from github :
-```
-$ pip install git+https://github.com/ymauray/pyupload.git
-```
-## Running
-Activate your virtual environment :
-```
-$ source ~/virtualenvs/pyupload/bin/activate
-```
 Your prompt should change, and display the name of the active virtual environment :
 ```
-(pyupload) $
+(pyuplod) $
+```
+Install PyUpload from github :
+```
+(pyupload) $ pip install git+https://github.com/ymauray/pyupload.git
+```
+## Running
+Activate your virtual environment, if it is not already active :
+```
+$ source ~/virtualenvs/pyupload/bin/activate
 ```
 Change to the directory where `config.ini` is and simply run `pyupload` :
 ```
 (pyupload) $ pyupload
+PyPublish v0.1.0, by Yannick Mauray a.k.a. the french guy from Switzerland
+Published under the GNU General Public License v3
+See https://www.gnu.org/licenses/gpl.txt
 
+THIS SOFTWARE IS UNDER HEAVY DEVELOPMENT AND IS NOT READY FOR PRODUCTION YET
+USE AT YOUR OWN RISK. YOU'VE BEEN WARNED.
+
+Retrieving Auphonic's preset details
+Episode
+-------
+File to upload : /data/Musique/iDJC/idjc.[2016-11-06][13:42:34].01.flac
+Number : 06
+Title : #06 - The Hackney Gentrification Song (Robin Grey)
+Cover art file : /data/Musique/NaPodPoMo/themes/napodpomo_06.png
+
+Auphonic
+--------
+Account : xxxxxxxxxxxx
+Preset : NaPodPoMo 2016 (xxxxxxxxxxxxxxxx)
+Output file basename : 06_The_Hackney_Gentrification_Song
+
+Archive.org
+-----------
+Item : frenchguych_test_item
+Folder: 06
+
+Press enter if everything seems fine, CTRL-C otherwise. 
 ```
+## Support
+Post any questions, remarks, issues, etc... on github at https://github.com/ymauray/pyupload/issues
 
