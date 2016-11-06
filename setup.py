@@ -8,7 +8,7 @@ wait for files to be derived, and print out file URLs.
 from codecs import open
 from os import path
 
-from setuptools import setup
+from setuptools import setup, find_packages
 
 here = path.abspath(path.dirname(__file__))
 
@@ -44,7 +44,7 @@ setup(
 
     keywords='auphonic internetarchive audio podcast',
 
-    py_modules=['pyupload'],
+    packages=find_packages(exclude=['contrib', 'docs', 'tests*']),
 
     entry_points={
         'console_scripts': [
