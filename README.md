@@ -72,5 +72,17 @@ Install PyUpload from github :
 $ pip install git+https://github.com/ymauray/pyupload.git
 ```
 ## Running
-Just run `pyupload` from the directory that contains `config.ini`
+Activate your virtual environment :
+```
+$ source ~/virtualenvs/pyupload/bin/activate
+```
+Your prompt should change, and display the name of the active virtual environment :
+```
+(pyupload) $
+```
+Change to the directory where `config.ini` is and simply run `pyupload` :
+```
+(pyupload) $ pyupload
+
+```
 
