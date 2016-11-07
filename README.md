@@ -69,11 +69,20 @@ $ source bin/activate
 ```
 Your prompt should change, and display the name of the active virtual environment :
 ```
-(pyuplod) $
+(pyupload) $
 ```
 Install PyUpload from github :
 ```
 (pyupload) $ pip install git+https://github.com/ymauray/pyupload.git
+```
+## Updating
+Activate your virtual environment, if it is not already active :
+```
+$ source ~/virtualenvs/pyupload/bin/activate
+```
+Update package from github :
+```
+(pyupload) $ pip install git+https://github.com/ymauray/pyupload.git --upgrade
 ```
 ## Running
 Activate your virtual environment, if it is not already active :
@@ -109,8 +118,7 @@ Archive.org
 Item : frenchguych_test_item
 Folder: 06
 
-Press enter if everything seems fine, CTRL-C otherwise. 
+Press enter if everything seems fine, CTRL-C otherwise.
 ```
 ## Support
 Post any questions, remarks, issues, etc... on github at https://github.com/ymauray/pyupload/issues
-
