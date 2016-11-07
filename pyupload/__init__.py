@@ -71,6 +71,7 @@ def main():
         exit(0)
     print
     print 'Ok, let\'s go !'
+    print
 
     auphonic_response = auphonic.upload()
     uuid = auphonic_response['data']['uuid']

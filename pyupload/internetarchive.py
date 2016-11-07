@@ -65,6 +65,6 @@ def list_urls():
     l_response = json.loads(l_out)
     for l_file in l_response['files']:
         if l_file.startswith(l_root):
-            print 'https://archive.org/download%s' % l_file
+            print 'https://archive.org/download/%s%s' % (config.get('internetarchive', 'item'), l_file)
 
     print
