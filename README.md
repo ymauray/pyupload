@@ -30,12 +30,12 @@ Install PyUpload from github :
 ```
 (pyupload) $ pip install git+https://github.com/ymauray/pyupload.git
 ```
-## Updating
+## Upgrading
 Activate your virtual environment, if it is not already active :
 ```
 $ source ~/virtualenvs/pyupload/bin/activate
 ```
-Update package from github :
+Upgrade package from github :
 ```
 (pyupload) $ pip install git+https://github.com/ymauray/pyupload.git --upgrade
 ```
@@ -105,7 +105,7 @@ Activate your virtual environment, if it is not already active :
 ```
 $ source ~/virtualenvs/pyupload/bin/activate
 ```
-Change to the directory where `config.ini` is and simply run `pyupload`, or add any options on the command line to override the values in the configuration file :
+Change to the directory where `config.ini` is and simply run `pyupload`. Add any options on the command line to override the values in the configuration file.
 ```
 (pyupload) $ pyupload
 PyPublish v0.1.0, by Yannick Mauray a.k.a. the french guy from Switzerland
@@ -136,5 +136,11 @@ Folder: 06
 
 Press enter if everything seems fine, CTRL-C otherwise.
 ```
+## Running without the confirmation messge
+It is possible to add the `--no-message` option on the command line to bypass the message
+```
+Press enter if everything seems fine, CTRL-C otherwise.
+```
+
 ## Support
 Post any questions, remarks, issues, etc... on github at https://github.com/ymauray/pyupload/issues
