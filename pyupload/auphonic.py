@@ -14,7 +14,7 @@ def upload():
         ['curl', '-X', 'POST', 'https://auphonic.com/api/simple/productions.json', '-u',
          '%s:%s' % (options.auphonic_username, options.auphonic_password), '-F',
          'preset=%s' % options.auphonic_preset, '-F',
-         'title=%s' % options.episode_title, '-F', 'input_file=@%s' % options.episode_file, '-F',
+         'title=%s' % options.episode_title, '-F', 'input_file=@%s' % options.episode_input_file, '-F',
          'image=@%s' % options.episode_cover_art_file, '-F', 'track=%s' % options.episode_number, '-F',
          'output_basename=%s' % options.auphonic_output_file_basename, '-F',
          'action=save'],
