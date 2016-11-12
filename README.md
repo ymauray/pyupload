@@ -9,51 +9,6 @@ This tool will :
 * Wait for the item to be derived
 * Print out the URLs
 
-## Configuration
-The configuration file is `config.ini` and it should be present in the directory PyUpload is started from.
-
-Here's an example :
-```ini
-[episode]
-# File to upload to Auphonic.
-file=/data/Musique/iDJC/idjc.[2016-11-06][13:42:34].01.flac
-
-# Episode number.
-number=06
-
-# Episode title.
-title=#06 - The Hackney Gentrification Song (Robin Grey)
-
-# Cover art file.
-cover_art=/data/Musique/NaPodPoMo/images/napodpomo_06.png
-
-[auphonic]
-# Base name of the output files (without extension).
-output_file_basename=06_The_Hackney_Gentrification_Song
-
-# UUID of the preset to use.
-preset=xxxxxxxxxxxxxxxx
-
-# Auphonic's user name.
-username=xxxxxxxxxxxx
-
-# Auphonic's password.
-password=xxxxxxxxxxxx
-
-[internetarchive]
-# Item in which the files will be stored.
-item=frenchguych_test_item
-
-# Folder inside the item.
-folder=06
-
-# Access key. (see https://archive.org/account/s3.php)
-access_key=xxxxxxxxxxxxxxxx
-
-# Secret key. (see https://archive.org/account/s3.php)
-secret_key=xxxxxxxxxxxxxxxx
-```
-
 ## Installing
 First, install `virtualenv` is necessary :
 ```
@@ -84,12 +39,73 @@ Update package from github :
 ```
 (pyupload) $ pip install git+https://github.com/ymauray/pyupload.git --upgrade
 ```
+## Configuration
+The configuration file is `config.ini` and it should be present in the directory PyUpload is started from. All parameters can be overriden from the command line.
+
+Here's an example :
+```ini
+[episode]
+# File to upload to Auphonic.
+input-file=/data/Musique/iDJC/idjc.[2016-11-06][13:42:34].01.flac
+
+# Episode number.
+number=06
+
+# Episode title.
+title=#06 - The Hackney Gentrification Song (Robin Grey)
+
+# Cover art file.
+cover-art-file=/data/Musique/NaPodPoMo/images/napodpomo_06.png
+
+[auphonic]
+# Base name of the output files (without extension).
+output-file-basename=06_The_Hackney_Gentrification_Song
+
+# UUID of the preset to use.
+preset=xxxxxxxxxxxxxxxx
+
+# Auphonic's user name.
+username=xxxxxxxxxxxx
+
+# Auphonic's password.
+password=xxxxxxxxxxxx
+
+[internetarchive]
+# Item in which the files will be stored.
+item=frenchguych_test_item
+
+# Folder inside the item.
+folder=06
+
+# Access key. (see https://archive.org/account/s3.php)
+access-key=xxxxxxxxxxxxxxxx
+
+# Secret key. (see https://archive.org/account/s3.php)
+secret-key=xxxxxxxxxxxxxxxx
+```
+From the command line, the same thing can be done with :
+```
+$ pyupload \
+    --episode-input-file="/data/Musique/iDJC/idjc.[2016-11-06][13:42:34].01.flac" \
+    --episode-number=06 \
+    --episode-title="#06 - The Hackney Gentrification Song (Robin Grey)" \
+    --episode-cover-art-file=/data/Musique/NaPodPoMo/images/napodpomo_06.png \
+    --auphonic-ouput-file-basename=06_The_Hackney_Gentrification_Song \
+    --auphonic-preset=xxxxxxxxxxxxxxxx \
+    --auphonic-username=xxxxxxxxxxxx \
+    --auphonic-password=xxxxxxxxxxxx \
+    --internetarchive-item=frenchguych_test_item \
+    --internetarchive-folder=06 \
+    --internetarchive-access-key=xxxxxxxxxxxxxxxx \
+    --internetarchive-secret-key=xxxxxxxxxxxxxxxx
+```
+`config.ini` is the default name for the configuration file. 
 ## Running
 Activate your virtual environment, if it is not already active :
 ```
 $ source ~/virtualenvs/pyupload/bin/activate
 ```
-Change to the directory where `config.ini` is and simply run `pyupload` :
+Change to the directory where `config.ini` is and simply run `pyupload`, or add any options on the command line to override the values in the configuration file :
 ```
 (pyupload) $ pyupload
 PyPublish v0.1.0, by Yannick Mauray a.k.a. the french guy from Switzerland
