@@ -4,11 +4,11 @@ import subprocess
 
 import auphonic
 import internetarchive
-from ini import config
+from ini import options
 
 
 def checkfile(p_file):
-    if not os.path.isfile(p_file):
+    if p_file is None or not os.path.isfile(p_file):
         print 'File not found: %s' % p_file
         print
         exit(-1)
@@ -24,12 +24,12 @@ def main():
     print "USE AT YOUR OWN RISK. YOU'VE BEEN WARNED."
     print ""
 
-    checkfile(config.get('episode', 'file'))
-    checkfile(config.get('episode', 'cover_art'))
+    checkfile(options.episode_input_file)
+    checkfile(options.episode_cover_art_file)
 
     proc = subprocess.Popen(
-        ['curl', '-s', '-X', 'GET', 'https://auphonic.com/api/preset/%s.json' % config.get('auphonic', 'preset'), '-u',
-         '%s:%s' % (config.get('auphonic', 'username'), config.get('auphonic', 'password'))], stdout=subprocess.PIPE)
+        ['curl', '-s', '-X', 'GET', 'https://auphonic.com/api/preset/%s.json' % options.auphonic_preset, '-u',
+         '%s:%s' % (options.auphonic_username, options.auphonic_password)], stdout=subprocess.PIPE)
     (out, _) = proc.communicate()
     response = {}
     try:
@@ -38,7 +38,7 @@ def main():
         pass
 
     if 'data' not in response:
-        print 'Auphonic preset "%s" does not exist' % config.get('auphonic', 'preset')
+        print 'Auphonic preset "%s" does not exist' % options.auphonic_preset
         print
         exit(-1)
 
@@ -46,32 +46,34 @@ def main():
 
     print 'Episode'
     print '-------'
-    print 'File to upload : %s' % config.get('episode', 'file')
-    print 'Number : %s' % config.get('episode', 'number')
-    print 'Title : %s' % config.get('episode', 'title')
-    print 'Cover art file : %s' % config.get('episode', 'cover_art')
+    print 'File to upload : %s' % options.episode_input_file
+    print 'Number : %s' % options.episode_number
+    print 'Title : %s' % options.episode_title
+    print 'Cover art file : %s' % options.episode_cover_art_file
     print
     print 'Auphonic'
     print '--------'
-    print 'Account : %s' % config.get('auphonic', 'username')
-    print 'Preset : %s (%s)' % (auphonic_preset_name, config.get('auphonic', 'preset'))
-    print 'Output file basename : %s' % config.get('auphonic', 'output_file_basename')
+    print 'Account : %s' % options.auphonic_username
+    print 'Preset : %s (%s)' % (auphonic_preset_name, options.auphonic_preset)
+    print 'Output file basename : %s' % options.auphonic_output_file_basename
     print
     print 'Archive.org'
     print '-----------'
-    print 'Item : %s' % config.get('internetarchive', 'item')
-    print 'Folder: %s' % config.get('internetarchive', 'folder')
+    print 'Item : %s' % options.internetarchive_item
+    print 'Folder: %s' % options.internetarchive_folder
     print
-    try:
-        raw_input('Press enter if everything seems fine, CTRL-C otherwise. ')
-    except KeyboardInterrupt:
+
+    if not options.no_message:
+        try:
+            raw_input('Press enter if everything seems fine, CTRL-C otherwise. ')
+        except KeyboardInterrupt:
+            print
+            print "Aborted."
+            print
+            exit(0)
         print
-        print "Aborted."
+        print "Ok, let's go !"
         print
-        exit(0)
-    print
-    print 'Ok, let\'s go !'
-    print
 
     auphonic_response = auphonic.upload()
     uuid = auphonic_response['data']['uuid']

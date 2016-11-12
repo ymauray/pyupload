@@ -3,7 +3,7 @@ import subprocess
 import sys
 import time
 
-from ini import config
+from ini import options
 
 
 def upload_files(p_files):
@@ -18,11 +18,11 @@ def upload_files(p_files):
             ['curl', '--location', '--header', 'x-amz-auto-make-bucket:1',
              '--header',
              'authorization: LOW %s:%s' % (
-                 config.get('internetarchive', 'access_key'), config.get('internetarchive', 'secret_key')),
+                 options.internetarchive_access_key, options.internetarchive_secret_key),
              '--upload-file', l_file,
              '--header', 'x-archive-queue-derive:%d' % l_derive,
              'http://s3.us.archive.org/%s/%s/%s' % (
-                 config.get('internetarchive', 'item'), config.get('internetarchive', 'folder'), l_file)],
+                 options.internetarchive_item, options.internetarchive_folder, l_file)],
             stdout=subprocess.PIPE)
         (l_out, _) = l_proc.communicate()
         print
@@ -31,14 +31,14 @@ def upload_files(p_files):
 def wait_for_derivation():
     print "Waiting for derivation to finish "
     l_reference_file = '/%s/%s_spectrogram.png' % (
-        config.get('internetarchive', 'folder'), config.get('auphonic', 'output_file_basename'));
+        options.internetarchive_folder, options.auphonic_output_file_basename);
 
     while True:
         l_proc = subprocess.Popen(
             ['curl', '-s', '--location', '--header',
              'authorization: LOW %s:%s' % (
-                 config.get('internetarchive', 'access_key'), config.get('internetarchive', 'secret_key')),
-             'https://archive.org/details/%s&output=json' % config.get('internetarchive', 'item')],
+                 options.internetarchive_access_key, options.internetarchive_secret_key),
+             'https://archive.org/details/%s&output=json' % options.internetarchive_item],
             stdout=subprocess.PIPE)
         (l_out, _) = l_proc.communicate()
         l_response = json.loads(l_out)
@@ -55,16 +55,16 @@ def wait_for_derivation():
 def list_urls():
     print "URLs of the uploaded files : "
     l_root = '/%s/%s' % (
-        config.get('internetarchive', 'folder'), config.get('auphonic', 'output_file_basename'));
+        options.internetarchive_folder, options.auphonic_output_file_basename);
     l_proc = subprocess.Popen(
         ['curl', '-s', '--location', '--header',
          'authorization: LOW %s:%s' % (
-             config.get('internetarchive', 'access_key'), config.get('internetarchive', 'secret_key')),
-         'https://archive.org/details/%s&output=json' % config.get('internetarchive', 'item')], stdout=subprocess.PIPE)
+             options.internetarchive_access_key, options.internetarchive_secret_key),
+         'https://archive.org/details/%s&output=json' % options.internetarchive_item], stdout=subprocess.PIPE)
     (l_out, _) = l_proc.communicate()
     l_response = json.loads(l_out)
     for l_file in l_response['files']:
         if l_file.startswith(l_root):
-            print 'https://archive.org/download/%s%s' % (config.get('internetarchive', 'item'), l_file)
+            print 'https://archive.org/download/%s%s' % (options.internetarchive_item, l_file)
 
     print
