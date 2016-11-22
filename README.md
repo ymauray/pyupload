@@ -61,6 +61,9 @@ cover-art-file=/data/Musique/NaPodPoMo/images/napodpomo_06.png
 # Base name of the output files (without extension).
 output-file-basename=06_The_Hackney_Gentrification_Song
 
+# Year (will default to current year if not specified)
+year=2016
+
 # UUID of the preset to use.
 preset=xxxxxxxxxxxxxxxx
 
@@ -99,7 +102,8 @@ $ pyupload \
     --internetarchive-access-key=xxxxxxxxxxxxxxxx \
     --internetarchive-secret-key=xxxxxxxxxxxxxxxx
 ```
-`config.ini` is the default name for the configuration file. 
+`config.ini` is the default name for the configuration file. It can be overriden with `--config /path/to/config/file`
+It is possible to not wait for archive.org's derivation process, using the `--no-wait` command line option.
 ## Running
 Activate your virtual environment, if it is not already active :
 ```

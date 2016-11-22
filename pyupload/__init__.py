@@ -81,5 +81,6 @@ def main():
     auphonic.wait_for_production(uuid)
     output_files = auphonic.download_output_files(uuid)
     internetarchive.upload_files(output_files)
-    internetarchive.wait_for_derivation()
-    internetarchive.list_urls()
+    if not options.no_wait:
+        internetarchive.wait_for_derivation()
+        internetarchive.list_urls()
