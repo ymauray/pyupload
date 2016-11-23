@@ -93,7 +93,7 @@ $ pyupload \
     --episode-number=06 \
     --episode-title="#06 - The Hackney Gentrification Song (Robin Grey)" \
     --episode-cover-art-file=/data/Musique/NaPodPoMo/images/napodpomo_06.png \
-    --auphonic-ouput-file-basename=06_The_Hackney_Gentrification_Song \
+    --auphonic-output-file-basename=06_The_Hackney_Gentrification_Song \
     --auphonic-preset=xxxxxxxxxxxxxxxx \
     --auphonic-username=xxxxxxxxxxxx \
     --auphonic-password=xxxxxxxxxxxx \

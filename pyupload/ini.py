@@ -29,7 +29,7 @@ options = Options()
 try:
     opts, args = getopt.getopt(sys.argv[1:], "",
                                ["no-confirm", "config=", "no-wait", "episode-input-file=", "episode-number=",
-                                "episode-title=", "episode-cover-art-file=", "auphonic-ouput-file-basename=",
+                                "episode-title=", "episode-cover-art-file=", "auphonic-output-file-basename=",
                                 "auphonic-year=", "auphonic-preset=", "auphonic-username=", "auphonic-password=",
                                 "internetarchive-item=", "internetarchive-folder=", "internetarchive-access-key=",
                                 "internetarchive-secret-key="])
@@ -78,7 +78,7 @@ for o, a in opts:
         options.episode_title = a
     elif o == "--episode-cover-art-file":
         options.episode_cover_art_file = a
-    elif o == "--auphonic-ouput-file-basename":
+    elif o == "--auphonic-output-file-basename":
         options.auphonic_output_file_basename = a
     elif o == "--auphonic-year":
         options.auphonic_year = a
