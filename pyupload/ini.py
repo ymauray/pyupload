@@ -45,19 +45,32 @@ for o, a in opts:
 if os.path.isfile(config_ini):
     config = ConfigParser.ConfigParser()
     config.read(config_ini)
-    options.episode_input_file = config.get('episode', 'input-file')
-    options.episode_number = config.get('episode', 'number')
-    options.episode_title = config.get('episode', 'title')
-    options.episode_cover_art_file = config.get('episode', 'cover-art-file')
-    options.auphonic_output_file_basename = config.get('auphonic', 'output-file-basename')
-    options.auphonic_year = config.get('auphonic', 'year')
-    options.auphonic_preset = config.get('auphonic', 'preset')
-    options.auphonic_username = config.get('auphonic', 'username')
-    options.auphonic_password = config.get('auphonic', 'password')
-    options.internetarchive_item = config.get('internetarchive', 'item')
-    options.internetarchive_folder = config.get('internetarchive', 'folder')
-    options.internetarchive_access_key = config.get('internetarchive', 'access-key')
-    options.internetarchive_secret_key = config.get('internetarchive', 'secret-key')
+    if config.has_option('episode', 'input-file'):
+        options.episode_input_file = config.get('episode', 'input-file')
+    if config.has_option('episode', 'number'):
+        options.episode_number = config.get('episode', 'number')
+    if config.has_option('episode', 'title'):
+        options.episode_title = config.get('episode', 'title')
+    if config.has_option('episode', 'cover-art-file'):
+        options.episode_cover_art_file = config.get('episode', 'cover-art-file')
+    if config.has_option('auphonic', 'output-file-basename'):
+        options.auphonic_output_file_basename = config.get('auphonic', 'output-file-basename')
+    if config.has_option('auphonic', 'year'):
+        options.auphonic_year = config.get('auphonic', 'year')
+    if config.has_option('auphonic', 'preset'):
+        options.auphonic_preset = config.get('auphonic', 'preset')
+    if config.has_option('auphonic', 'username'):
+        options.auphonic_username = config.get('auphonic', 'username')
+    if config.has_option('auphonic', 'password'):
+        options.auphonic_password = config.get('auphonic', 'password')
+    if config.has_option('internetarchive', 'item'):
+        options.internetarchive_item = config.get('internetarchive', 'item')
+    if config.has_option('internetarchive', 'folder'):
+        options.internetarchive_folder = config.get('internetarchive', 'folder')
+    if config.has_option('internetarchive', 'access-key'):
+        options.internetarchive_access_key = config.get('internetarchive', 'access-key')
+    if config.has_option('internetarchive', 'secret-key'):
+        options.internetarchive_secret_key = config.get('internetarchive', 'secret-key')
 else:
     print
     print "======="
