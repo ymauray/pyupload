@@ -22,6 +22,7 @@ class Options:
         self.internetarchive_folder = None
         self.internetarchive_access_key = None
         self.internetarchive_secret_key = None
+        self.internetarchive_download = False
 
 
 options = Options()
@@ -32,7 +33,7 @@ try:
                                 "episode-title=", "episode-cover-art-file=", "auphonic-output-file-basename=",
                                 "auphonic-year=", "auphonic-preset=", "auphonic-username=", "auphonic-password=",
                                 "internetarchive-item=", "internetarchive-folder=", "internetarchive-access-key=",
-                                "internetarchive-secret-key="])
+                                "internetarchive-secret-key=", "internetarchive-download"])
 except getopt.GetoptError as err:
     print(err)
     sys.exit(2)
@@ -71,6 +72,9 @@ if os.path.isfile(config_ini):
         options.internetarchive_access_key = config.get('internetarchive', 'access-key')
     if config.has_option('internetarchive', 'secret-key'):
         options.internetarchive_secret_key = config.get('internetarchive', 'secret-key')
+    if config.has_option('internetarchive', 'download'):
+        options.internetarchive_download = config.get('internetarchive', 'download')
+
 else:
     print
     print "======="
@@ -109,7 +113,13 @@ for o, a in opts:
         options.internetarchive_access_key = a
     elif o == "--internetarchive-secret-key":
         options.internetarchive_secret_key = a
+    elif o == "--internetarchive-download":
+        options.internetarchive_download = True
 
 if options.auphonic_year is None:
     now = datetime.datetime.now()
     options.auphonic_year = now.year
+
+if options.internetarchive_download:
+    options.no_wait = False
+

@@ -16,7 +16,7 @@ def checkfile(p_file):
 
 def main():
     """Entry point for PyUpload"""
-    print "PyPublish v0.1.0, by Yannick Mauray a.k.a. the french guy from Switzerland"
+    print "PyUpload v0.1.0, by Yannick Mauray a.k.a. the french guy from Switzerland"
     print "Published under the GNU General Public License v3"
     print "See https://www.gnu.org/licenses/gpl.txt"
     print ""
@@ -61,6 +61,8 @@ def main():
     print '-----------'
     print 'Item : %s' % options.internetarchive_item
     print 'Folder: %s' % options.internetarchive_folder
+    print 'Wait for derivation: %s' % (not options.no_wait)
+    print 'Download: %s' % options.internetarchive_download
     print
 
     if not options.no_message:
@@ -75,12 +77,12 @@ def main():
         print "Ok, let's go !"
         print
 
-    auphonic_response = auphonic.upload()
-    uuid = auphonic_response['data']['uuid']
-    auphonic.start_production(uuid)
-    auphonic.wait_for_production(uuid)
-    output_files = auphonic.download_output_files(uuid)
-    internetarchive.upload_files(output_files)
+    #auphonic_response = auphonic.upload()
+    #uuid = auphonic_response['data']['uuid']
+    #auphonic.start_production(uuid)
+    #auphonic.wait_for_production(uuid)
+    #output_files = auphonic.download_output_files(uuid)
+    #internetarchive.upload_files(output_files)
     if not options.no_wait:
-        internetarchive.wait_for_derivation()
+        #internetarchive.wait_for_derivation()
         internetarchive.list_urls()

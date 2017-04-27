@@ -53,7 +53,9 @@ def wait_for_derivation():
 
 
 def list_urls():
-    print "URLs of the uploaded files : "
+    if not options.internetarchive_download:
+        print "URLs of the uploaded files : "
+
     l_root = '/%s/%s' % (
         options.internetarchive_folder, options.auphonic_output_file_basename);
     l_proc = subprocess.Popen(
@@ -65,6 +67,15 @@ def list_urls():
     l_response = json.loads(l_out)
     for l_file in l_response['files']:
         if l_file.startswith(l_root):
-            print 'https://archive.org/download/%s%s' % (options.internetarchive_item, l_file)
+            source_url = 'https://archive.org/download/%s%s' % (options.internetarchive_item, l_file)
+            index = source_url.rfind('/')
+            output_file = source_url[index + 1:]
+            if options.internetarchive_download:
+                print 'Downloading %s' % source_url
+                proc = subprocess.Popen(["curl", "-L", source_url, "-o", output_file], stdout=subprocess.PIPE)
+                proc.communicate()
+            else:
+                print source_url
 
     print
+
