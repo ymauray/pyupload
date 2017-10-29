@@ -14,6 +14,12 @@ First, install `virtualenv` is necessary :
 ```
 $ pip install virtualenv
 ```
+Also, cURL is required to handle the uploads:
+```
+$ sudo apt install curl
+```
+_(this is for Ubuntu/Debian based distros, refer to your distribution's package manager for others)_
+
 Then change to wherever you store your virtual environments, and create a new one :
 ```
 $ mkdir -p ~/virtualenvs
