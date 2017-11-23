@@ -1,4 +1,4 @@
-"""PyPublish : a tool to upload an audio file to Auphonic,
+"""PyUpload : a tool to upload an audio file to Auphonic,
 start the audio production, wait for production to complete,
 download output files, upload those files to archive.org,
 wait for files to be derived, and print out file URLs.
